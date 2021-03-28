@@ -1,11 +1,9 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
         <meta charset="utf-8" />
-        <title>Sao Đỏ - Liên Chi Đoàn</title>
+        <title>Đăng ký/Đăng nhập</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Premium Bootstrap 4 Landing Page Template" />
         <meta name="keywords" content="Saas, Software, multi-uses, HTML, Clean, Modern" />
@@ -14,7 +12,7 @@
         <meta name="website" content="http://www.shreethemes.in" />
         <meta name="Version" content="v2.6" />
         <!-- favicon -->
-        <link rel="shortcut icon" href="{{ asset('') }}images/logo-icon.png">
+        <link rel="shortcut icon" href="{{ asset('') }}images/favicon.ico">
         <!-- Bootstrap -->
         <link href="{{ asset('') }}css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- Icons -->
@@ -26,20 +24,13 @@
         <link rel="stylesheet" href="{{ asset('') }}css/slick.css"/> 
         <link rel="stylesheet" href="{{ asset('') }}css/slick-theme.css"/>
         <!-- Main Css -->
-        <link href="{{ asset('') }}css/style1.css" rel="stylesheet" type="text/css" id="theme-opt" />
+        <link href="{{ asset('') }}css/style.css" rel="stylesheet" type="text/css" id="theme-opt" />
         <link href="{{ asset('') }}css/colors/default.css" rel="stylesheet" id="color-opt">
     </head>
 
-    <body>
- 
-        @include('layout.header')       
+    <body>      
         @yield('content')
         @include('layout.notification')
-        @include('layout.footer')
-
-        <!-- Back to top -->
-        <a href="#" class="btn btn-icon btn-primary back-to-top"><i data-feather="arrow-up" class="icons"></i></a>
-        <!-- Back to top -->
 
         <!-- javascript -->
         <script src="{{ asset('') }}js/jquery-3.5.1.min.js"></script>
