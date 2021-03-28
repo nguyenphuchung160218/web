@@ -23,10 +23,13 @@
                                 <option value="">--Chọn Lớp--</option>
                                 @if(isset($class1))
                                 @foreach($class1 as $item)
-                                    <option value="{{ $item->id }}">{{ $item->ten }}</option>
+                                    <option value="{{ $item->id }}"
+                                 
+                                        >{{ $item->ten }}</option>
                                 @endforeach
                                 @endif
                             </select>
+                           
                         </div>
                     </div>
                 </div>
@@ -46,9 +49,9 @@
                             <td>
                                 <div class="form-group">
                                     <label for=""> Nhập Tổng Điểm:</label>
-                                    <input type="text" class="form-control" placeholder="" value="" name="hoctap">
+                                    <input type="text" class="form-control" placeholder="" value="{{old('hoctap',isset($diem->hoctap) ? $diem->hoctap : '') }}" name="hoctap">
                                     <label for=""> Số Lần Trừ:</label>
-                                    <input type="text" class="form-control" placeholder="" value="" name="slhoctap">
+                                    <input type="text" class="form-control" placeholder="" value="{{old('slhoctap',isset($diem->slhoctap) ? $diem->slhoctap : '') }}" name="slhoctap">
                                 </div>
                             </td>
                             <td>

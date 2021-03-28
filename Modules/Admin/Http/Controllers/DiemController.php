@@ -22,13 +22,13 @@ class DiemController extends Controller
      */
     public function index()
     {
-        return view('admin::diem.index');
+        $diems = Diem::join('tuan','diem.tuan_id','=','tuan.id')->join('hoctap','diem.hoctap_id','=','hoctap.id')->join('daoduc_tacphong','diem.daoduc_id','=','daoduc_tacphong.id')->join('vanthemi','diem.vanthemi_id','=','vanthemi.id')->join('hoatdongkhac','diem.hoatdongkhac_id','=','hoatdongkhac.id')->join('lop','diem.lop_id','=','lop.id')->select('tuan.tentuan as tentuan', 'hoctap.diem','diem.id','lop.khoi as lopkhoi','lop.ten as tenlop','hoctap.diem as hoctap','hoctap.solantru as slhoctap','daoduc_tacphong.diem as daoduc','daoduc_tacphong.solantru as sldaoduc','vanthemi.diem as vanthe','vanthemi.solantru as slvanthe','hoatdongkhac.diem as hoatdongkhac','hoatdongkhac.solantru as slhoatdongkhac','hoatdongkhac.diemcong as diemconghoatdong','hoatdongkhac.solancong as solanconghoatdong')->get();
+        $viewData = [
+           "diems"=>$diems
+        ];
+        return view('admin::diem.index',$viewData);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
     public function create()
     {
         $class1=Class1::all();
@@ -40,78 +40,53 @@ class DiemController extends Controller
         return view('admin::diem.create',$viewData);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
     public function store(Request $request)
-    {
-        $hoctapId=HocTap::insertGetId([
-            'diem' => $request->hoctap,
-            'solantru' => $request->slhoctap,
-        ]);
-        $vantheId=VanThe::insertGetId([
-            'diem' => $request->vanthe,
-            'solantru' => $request->slvanthe,
-        ]);
-        $daoducId=DaoDuc::insertGetId([
-            'diem' => $request->daoduc,
-            'solantru' => $request->sldaoduc,
-        ]);
-        $hoatdongkhacId=HoatDongKhac::insertGetId([
-            'diem' => $request->hoatdongkhac,
-            'solantru' => $request->slhoatdongkhac,
-        ]);
-        Diem::insert([
-            'tuan_id' => $request->tuan_id,
-            'lop_id' => $request->lop_id,
-            'hoctap_id' => $hoctapId,
-            'vanthemi_id' => $vantheId,
-            'daoduc_id' => $daoducId,
-            'hoatdongkhac_id' => $hoatdongkhacId,
-        ]);
-        return redirect()->back()->with('success','Thêm điểm thành công');       
+    {  
+        $this->insertOrUpdate($request);
+        return redirect()->back()->with('success','Thêm mới thành công');  
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('admin::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
     public function edit($id)
     {
-        return view('admin::diem.update');
+        $diems = Diem::find($id);
+        
+        return view('admin::diem.update',compact('diems'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $this->insertOrUpdate($request,$id);
+        return redirect()->back()->with('success','Cập nhật thành công');
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
     }
+     public function insertOrUpdate($request,$id='')
+    {
+            $diem = new Diem();
+            if($id) $diem= Diem::find($id);
+                $hoctapId=HocTap::insertGetId([
+                'diem' => $request->hoctap,
+                'solantru' => $request->slhoctap,
+                ]);
+                $vantheId=VanThe::insertGetId([
+                    'diem' => $request->vanthe,
+                    'solantru' => $request->slvanthe,
+                ]);
+                $daoducId=DaoDuc::insertGetId([
+                    'diem' => $request->daoduc,
+                    'solantru' => $request->sldaoduc,
+                ]);
+                $hoatdongkhacId=HoatDongKhac::insertGetId([
+                    'diem' => $request->hoatdongkhac,
+                    'solantru' => $request->slhoatdongkhac,
+                ]);
+                Diem::insert([
+                    'tuan_id' => $request->tuan_id,
+                    'lop_id' => $request->lop_id,
+                    'hoctap_id' => $hoctapId,
+                    'vanthemi_id' => $vantheId,
+                    'daoduc_id' => $daoducId,
+                    'hoatdongkhac_id' => $hoatdongkhacId,
+                ]);
+    }
+    
 }

@@ -18,7 +18,9 @@ Route::prefix('admin')->group(function() {
     	Route::get('/', 'DiemController@index')->name('get.diem');
     	Route::get('/create', 'DiemController@create')->name('get.diem.create');
     	Route::post('/create', 'DiemController@store');
-    	Route::get('/update/{id}', 'DiemController@edit')->name('get.diem.update');
+    	Route::get('/update/{id}', 'DiemController@edit')->name('get.diem.edit.class');
+        Route::post('/update/{id}', 'DiemController@update
+          ');
 	});
 	Route::group(['prefix' => 'lop'],function (){
        Route::get('/','AdminClassController@index')->name('admin.get.list.class');

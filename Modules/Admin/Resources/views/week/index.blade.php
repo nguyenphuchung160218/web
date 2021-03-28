@@ -19,12 +19,7 @@
               <th class="th-sm">Tên tuần
 
               </th>
-              <th class="th-sm">Lớp
 
-              </th>           
-              <th class="th-sm">Tổng điểm
-
-              </th>
                <th class="th-sm">Trạng thái
 
               </th>
@@ -39,9 +34,7 @@
                         <tr>
                             <td>{{ $week->nhom_tuan }}</td>
                             <td>{{ $week->tentuan }}</td>
-                            <td></td>
-                            <td></td>
-                           
+            
                              <td>
                                 <a href="{{ route('admin.get.action.week',['status',$week->id]) }}" class="label {{ $week->getStatus($week->t_status)['class'] }}">{{ $week->getStatus($week->t_status)['name'] }}</a>
                             </td>
