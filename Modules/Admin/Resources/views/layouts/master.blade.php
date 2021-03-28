@@ -71,10 +71,10 @@
                         <a href="{{ route('get.diem') }}"><i class="fa fa-fw fa-edit"></i> Điểm</a>
                     </li>
                     <li class="">
-                        <a href=""><i class="fa fa-fw fa-bar-chart-o"></i> Bài Viết</a>
+                        <a href="{{ route('admin.list.article') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Bài Viết</a>
                     </li>
                     <li class="">
-                        <a href=""><i class="fa fa-fw fa-bar-chart-o"></i> Đánh Giá</a>
+                        <a href="{{ route('admin.list.rating') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Đánh Giá</a>
                     </li>
                 </ul>
             </div>

@@ -38,6 +38,17 @@ Route::prefix('admin')->group(function() {
        Route::get('/{action}/{id}','AdminWeekController@action')->name('admin.get.action.week');
 
     });
+    Route::group(['prefix'=>'article'], function (){
+        Route::get('/', 'AdminArticleController@index')->name('admin.list.article');
+        Route::get('/create','AdminArticleController@create')->name('admin.create.article');
+        Route::post('/create','AdminArticleController@store');
+        Route::get('/update/{id}','AdminArticleController@edit')->name('admin.edit.article');
+        Route::post('/update/{id}','AdminArticleController@update');
+        Route::get('/{action}/{id}','AdminArticleController@action')->name('admin.action.article');
+    });
+    Route::group(['prefix'=>'rating'], function (){
+        Route::get('/', 'AdminRatingController@index')->name('admin.list.rating');
+    });
 
 
 });
