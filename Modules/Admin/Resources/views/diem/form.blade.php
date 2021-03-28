@@ -11,7 +11,7 @@
                                 @if(isset($week))
 
                                 @foreach($week as $item)
-                                    <option value="{{ $item->id }}">{{ $item->tentuan }}</option>
+                                    <option value="{{ $item->id }}" {{ old('tuan_id',isset($diem->tuan_id) ? $diem->tuan_id : '') == $item->id ? "selected='selected'" : "" }}>{{ $item->tentuan }}</option>
                                 @endforeach
                                 @endif
                             </select>
@@ -23,9 +23,7 @@
                                 <option value="">--Chọn Lớp--</option>
                                 @if(isset($class1))
                                 @foreach($class1 as $item)
-                                    <option value="{{ $item->id }}"
-                                 
-                                        >{{ $item->ten }}</option>
+                                    <option value="{{ $item->id }}" {{ old('lop_id',isset($diem->lop_id) ? $diem->lop_id : '') == $item->id ? "selected='selected'" : "" }}>{{ $item->ten }}</option>
                                 @endforeach
                                 @endif
                             </select>
@@ -49,33 +47,33 @@
                             <td>
                                 <div class="form-group">
                                     <label for=""> Nhập Tổng Điểm:</label>
-                                    <input type="text" class="form-control" placeholder="" value="{{old('hoctap',isset($diem->hoctap) ? $diem->hoctap : '') }}" name="hoctap">
+                                    <input type="text" class="form-control" placeholder="" value="{{old('hoctap',isset($hoctap->diem) ? $hoctap->diem : '') }}" name="hoctap">
                                     <label for=""> Số Lần Trừ:</label>
-                                    <input type="text" class="form-control" placeholder="" value="{{old('slhoctap',isset($diem->slhoctap) ? $diem->slhoctap : '') }}" name="slhoctap">
+                                    <input type="text" class="form-control" placeholder="" value="{{old('hoctap',isset($hoctap->solantru) ? $hoctap->solantru : '') }}" name="slhoctap">
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
                                     <label for=""> Nhập Tổng Điểm:</label>
-                                    <input type="text" class="form-control" placeholder="" value="" name="vanthe">
+                                    <input type="text" class="form-control" placeholder="" value="{{old('vanthe',isset($vanthe->diem) ? $vanthe->diem : '') }}" name="vanthe">
                                     <label for=""> Số Lần Trừ:</label>
-                                    <input type="text" class="form-control" placeholder="" value="" name="slvanthe">
+                                    <input type="text" class="form-control" placeholder="" value="{{old('vanthe',isset($vanthe->solantru) ? $vanthe->solantru : '') }}" name="slvanthe">
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
                                     <label for=""> Nhập Tổng Điểm:</label>
-                                    <input type="text" class="form-control" placeholder="" value="" name="daoduc">
+                                    <input type="text" class="form-control" placeholder="" value="{{old('daoduc',isset($daoduc->diem) ? $daoduc->diem : '') }}" name="daoduc">
                                     <label for=""> Số Lần Trừ:</label>
-                                    <input type="text" class="form-control" placeholder="" value="" name="sldaoduc">
+                                    <input type="text" class="form-control" placeholder="" value="{{old('daoduc',isset($daoduc->solantru) ? $daoduc->solantru : '') }}" name="sldaoduc">
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
                                     <label for=""> Nhập Tổng Điểm:</label>
-                                    <input type="text" class="form-control" placeholder="" value="" name="hoatdongkhac">
+                                    <input type="text" class="form-control" placeholder="" value="{{old('hoatdongkhac',isset($hoatdongkhac->diem) ? $hoatdongkhac->diem : '') }}" name="hoatdongkhac">
                                     <label for=""> Số Lần Trừ:</label>
-                                    <input type="text" class="form-control" placeholder="" value="" name="slhoatdongkhac">
+                                    <input type="text" class="form-control" placeholder="" value="{{old('hoatdongkhac',isset($hoatdongkhac->solantru) ? $hoatdongkhac->solantru : '') }}" name="slhoatdongkhac">
                                 </div>
                             </td>
                         </tr>

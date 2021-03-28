@@ -48,9 +48,24 @@ class DiemController extends Controller
 
     public function edit($id)
     {
-        $diems = Diem::find($id);
-        
-        return view('admin::diem.update',compact('diems'));
+        $diem = Diem::find($id);
+        $class1=Class1::all();
+        $week=Week::all();
+        $hoctap = HocTap::find($diem->hoctap_id);
+        $vanthe = VanThe::find($diem->vanthemi_id);
+        $daoduc = DaoDuc::find($diem->daoduc_id);
+        $hoatdongkhac = HoatDongKhac::find($diem->hoatdongkhac_id);
+
+        $viewData=[
+            'diem' => $diem,
+            'class1' => $class1,
+            'week' => $week,
+            'hoctap' => $hoctap,
+            'vanthe' => $vanthe,
+            'daoduc' => $daoduc,
+            'hoatdongkhac' => $hoatdongkhac,
+        ];
+        return view('admin::diem.update',$viewData);
     }
 
     public function update(Request $request, $id)
@@ -61,32 +76,41 @@ class DiemController extends Controller
     }
      public function insertOrUpdate($request,$id='')
     {
-            $diem = new Diem();
-            if($id) $diem= Diem::find($id);
-                $hoctapId=HocTap::insertGetId([
-                'diem' => $request->hoctap,
-                'solantru' => $request->slhoctap,
-                ]);
-                $vantheId=VanThe::insertGetId([
-                    'diem' => $request->vanthe,
-                    'solantru' => $request->slvanthe,
-                ]);
-                $daoducId=DaoDuc::insertGetId([
-                    'diem' => $request->daoduc,
-                    'solantru' => $request->sldaoduc,
-                ]);
-                $hoatdongkhacId=HoatDongKhac::insertGetId([
-                    'diem' => $request->hoatdongkhac,
-                    'solantru' => $request->slhoatdongkhac,
-                ]);
-                Diem::insert([
-                    'tuan_id' => $request->tuan_id,
-                    'lop_id' => $request->lop_id,
-                    'hoctap_id' => $hoctapId,
-                    'vanthemi_id' => $vantheId,
-                    'daoduc_id' => $daoducId,
-                    'hoatdongkhac_id' => $hoatdongkhacId,
-                ]);
+        $diem = new Diem();
+        if($id) $diem= Diem::find($id);
+            $hoctapId= new HocTap();
+            if($id) $hoctapId= HocTap::find($diem->hoctap_id);
+            $hoctapId->diem = $request->hoctap;
+            $hoctapId->solantru = $request->slhoctap;
+            $hoctapId->save();
+
+            $vantheId= new VanThe();
+            if($id) $vantheId= VanThe::find($diem->vanthemi_id);
+            $vantheId->diem = $request->vanthe;
+            $vantheId->solantru = $request->slvanthe;
+            $vantheId->save();
+
+            $daoducId= new DaoDuc();
+            if($id) $daoducId= DaoDuc::find($diem->daoduc_id);
+            $daoducId->diem = $request->daoduc;
+            $daoducId->solantru = $request->sldaoduc;
+            $daoducId->save();
+
+            $hoatdongkhacId= new HoatDongKhac();
+            if($id) $hoatdongkhacId= HoatDongKhac::find($diem->hoatdongkhac_id);
+            $hoatdongkhacId->diem = $request->hoatdongkhac;
+            $hoatdongkhacId->solantru = $request->slhoatdongkhac;
+            $hoatdongkhacId->save();
+
+ 
+        $diem->tuan_id = $request->tuan_id;
+        $diem->lop_id = $request->lop_id;
+        $diem->hoctap_id = $hoctapId->id;
+        $diem->vanthemi_id = $vantheId->id;
+        $diem->daoduc_id = $daoducId->id;
+        $diem->hoatdongkhac_id = $hoatdongkhacId->id;
+        $diem->save();
+
     }
     
 }

@@ -13,7 +13,7 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th style="width: 90px;">Tên tuần</th>
+                    <th style="width: 90px;">Tuần Số</th>
                     <th style="width: 100px;">Điểm học tập</th>
                     <th style="width: 100px;">Điểm đạo đức</th>
                     <th style="width: 120px;">Điểm văn thế mĩ</th>
@@ -27,7 +27,7 @@
                 @foreach($diems as $diem)
                     <tr>
                         <td>{{$diem->id}}</td>
-                        <td>{{ $diem->tentuan}}</td>
+                        <td>Tuần {{ $diem->tentuan}}</td>
                         <td> 
                             <span>{{ $diem->hoctap}}</span>
                             <ul style="margin-left: -30px">
@@ -37,7 +37,7 @@
                             </ul>
                         </td>
 
-                        </td>
+                        <td>
                          <span>{{ $diem->daoduc}}</span>
                             <ul style="margin-left: -30px">
                             <li><span>Điểm trừ</span>
@@ -50,7 +50,7 @@
                             <ul style="margin-left: -30px">
                             <li><span>Điểm trừ</span>
                                 <span>{{100-$diem->vanthemi}}</span></li>
-                            <li><span>Số lần trừ:</span><span>{{$diem->slvanthemi}}</span></li>
+                            <li><span>Số lần trừ:</span><span>{{$diem->slvanthe}}</span></li>
                             </ul>
                         </td>
                          <td>
