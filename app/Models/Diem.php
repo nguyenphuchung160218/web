@@ -9,4 +9,8 @@ class Diem extends Model
 {
     use HasFactory;
     protected $table= 'diem';
+    public function tuan()
+    {
+        return $this->belongsTo(Week::class,'id');
+    }
 }

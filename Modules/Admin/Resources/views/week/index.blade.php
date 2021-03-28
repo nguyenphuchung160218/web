@@ -13,7 +13,7 @@
         <table id="dtBasicExample" class="table table-striped table-sm" cellspacing="0" width="100%">
             <thead>
             <tr>
-              <th class="th-sm">Stt
+              <th class="th-sm">Nhóm tuần
 
               </th>
               <th class="th-sm">Tên tuần
@@ -25,6 +25,9 @@
               <th class="th-sm">Tổng điểm
 
               </th>
+               <th class="th-sm">Trạng thái
+
+              </th>
               <th class="th-sm">Thao tác
 
               </th>
@@ -34,10 +37,15 @@
                 @if(isset($weeks))
                     @foreach($weeks as $week)
                         <tr>
-                            <td>{{ $week->id }}</td>
+                            <td>{{ $week->nhom_tuan }}</td>
                             <td>{{ $week->tentuan }}</td>
                             <td></td>
                             <td></td>
+                           
+                             <td>
+                                <a href="{{ route('admin.get.action.week',['status',$week->id]) }}" class="label {{ $week->getStatus($week->t_status)['class'] }}">{{ $week->getStatus($week->t_status)['name'] }}</a>
+                            </td>
+                           
                             <td>
                                 <a class="btn btn-info" style="font-size: 12px;" href="{{ route('admin.get.edit.week',$week->id) }}"><i class="fa fa-pencil"></i> Cập nhật</a>
                                 <a class="btn btn-danger" style="font-size: 12px;" href="{{ route('admin.get.action.week',['delete',$week->id]) }}"><i class="fa fa-trash"></i> Xóa</a>
