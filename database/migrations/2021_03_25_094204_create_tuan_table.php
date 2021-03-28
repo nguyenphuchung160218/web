@@ -15,7 +15,9 @@ class CreateTuanTable extends Migration
     {
         Schema::create('tuan', function (Blueprint $table) {
             $table->id();
+            $table->integer('nhom_tuan')->nullable();
             $table->string('tentuan')->nullable()->unique();
+            $table->integer('t_status')->default(0)->index();
             $table->integer('lop_id')->nullable();
             $table->integer('diem_id')->nullable();
             $table->integer('tongdiem')->nullable();

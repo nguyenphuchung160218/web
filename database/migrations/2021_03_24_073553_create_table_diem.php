@@ -15,6 +15,7 @@ class CreateTableDiem extends Migration
     {
         Schema::create('diem', function (Blueprint $table) {
             $table->id();
+            $table->integer('tuan_id')->nullable();
             $table->integer('sodaubai_id')->nullable();
             $table->integer('hoctap_id')->nullable();
             $table->integer('daoduc_id')->nullable();

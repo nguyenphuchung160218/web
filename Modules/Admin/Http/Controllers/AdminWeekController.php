@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers;
 
 use App\Http\Requests\RequestWeek;
 use App\Models\Week;
+use App\Models\Diem;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -13,7 +14,11 @@ class AdminWeekController extends Controller
 {
     public function index()
     {
-        $weeks = Week::select('id','tentuan')->get();
+        $weeks = Week::select('id','tentuan','nhom_tuan','t_status')->get();
+        $weekdetail = Week::join('diem', 'diem.id', '=', 'tuan.diem_id')
+            ->select('tuan.*','diem.*')->get();
+            // ->where('profile.status', '=', 'active')
+            // ->get();
         $viewData=[
             'weeks'=>$weeks
         ];
@@ -43,6 +48,7 @@ class AdminWeekController extends Controller
             $week = new Week();
             if($id) $week= Week::find($id);
             $week->tentuan = $requestWeek->tentuan;
+            $week->nhom_tuan = $requestWeek->nhom_tuan;
             $week->save();
     }
     public function action($action,$id)
@@ -55,6 +61,11 @@ class AdminWeekController extends Controller
                 case 'delete':
                     $weeks->delete();
                     $messages = 'Xoá thành công';
+                    break;
+                 case 'status':
+                    $weeks->t_status = $weeks->t_status == 1 ? 0 : 1;
+                    $messages = 'Cập nhật thành công';
+                    $weeks->save();
                     break;
             }
         }

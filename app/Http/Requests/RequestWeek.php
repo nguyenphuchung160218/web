@@ -20,6 +20,7 @@ class RequestWeek extends FormRequest
     {
         return [
             'tentuan'=>'required | unique:tuan,tentuan,'.$this->id,
+            'nhom_tuan'=>'required',
         ];
     }
     public function messages()
@@ -27,6 +28,7 @@ class RequestWeek extends FormRequest
         return [
             'tentuan.required'=>'Trường này không được để trống',
             'tentuan.unique'=>'Tên tuần đã tồn tại',
+            'nhom_tuan.required'=>'Trường này không được để trống'
 
         ];
     }
