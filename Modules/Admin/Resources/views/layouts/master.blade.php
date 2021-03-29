@@ -61,20 +61,23 @@
                     <li class="{{ \Request::route()->getName() == 'admin.home' ? 'active' : '' }}">
                         <a href="{{ route('admin.home') }}"><i class="fa fa-fw fa-home"></i> Trang Chủ</a>
                     </li>
-                    <li class="">
+                    <li class="{{ \Request::route()->getName() == 'admin.get.list.class' ? 'active' : '' }}">
                         <a href="{{ route('admin.get.list.class')}}"><i class="fa fa-fw fa-bar-chart-o"></i> Lớp</a>
                     </li>                  
-                    <li class="">
+                    <li class="{{ \Request::route()->getName() == 'admin.get.list.week' ? 'active' : '' }}">
                         <a href="{{route('admin.get.list.week')}}"><i class="fa fa-fw fa-table"></i>Tuần</a>
                     </li>
-                    <li class="">
+                    <li class="{{ \Request::route()->getName() == 'get.diem' ? 'active' : '' }}">
                         <a href="{{ route('get.diem') }}"><i class="fa fa-fw fa-edit"></i> Điểm</a>
                     </li>
-                    <li class="">
+                    <li class="{{ \Request::route()->getName() == 'admin.list.article' ? 'active' : '' }}">
                         <a href="{{ route('admin.list.article') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Bài Viết</a>
                     </li>
-                    <li class="">
+                    <li class="{{ \Request::route()->getName() == 'admin.list.rating' ? 'active' : '' }}">
                         <a href="{{ route('admin.list.rating') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Đánh Giá</a>
+                    </li>
+                    <li class="{{ \Request::route()->getName() == 'admin.get.list.user' ? 'active' : '' }}">
+                        <a href="{{ route('admin.get.list.user') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Thành Viên</a>
                     </li>
                 </ul>
             </div>

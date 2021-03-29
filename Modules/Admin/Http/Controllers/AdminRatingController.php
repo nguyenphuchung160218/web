@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Models\Rating;
 
 class AdminRatingController extends Controller
 {
@@ -74,6 +75,9 @@ class AdminRatingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rating= Rating::find($id);
+        $rating->delete();
+        $rating->save();
+        return redirect()->back()->with('success','Xóa thành công');
     }
 }

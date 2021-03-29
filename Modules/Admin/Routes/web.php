@@ -18,9 +18,9 @@ Route::prefix('admin')->group(function() {
     	Route::get('/', 'DiemController@index')->name('get.diem');
     	Route::get('/create', 'DiemController@create')->name('get.diem.create');
     	Route::post('/create', 'DiemController@store');
-    	Route::get('/update/{id}', 'DiemController@edit')->name('get.diem.edit.class');
-        Route::post('/update/{id}', 'DiemController@update
-          ');
+    	Route::get('/update/{id}', 'DiemController@edit')->name('get.diem.edit');
+      Route::post('/update/{id}', 'DiemController@update');
+      Route::get('/delete/{id}','DiemController@destroy')->name('get.diem.destroy');
 	});
 	Route::group(['prefix' => 'lop'],function (){
        Route::get('/','AdminClassController@index')->name('admin.get.list.class');
@@ -50,6 +50,11 @@ Route::prefix('admin')->group(function() {
     });
     Route::group(['prefix'=>'rating'], function (){
         Route::get('/', 'AdminRatingController@index')->name('admin.list.rating');
+    });
+    //quan ly thanh vien
+    Route::group(['prefix' => 'user'],function (){
+        Route::get('/','AdminUserController@index')->name('admin.get.list.user');
+        Route::get('/delete/{id}','AdminUserController@destroy')->name('admin.get.destroy.user');
     });
 
 

@@ -22,7 +22,7 @@ class DiemController extends Controller
      */
     public function index()
     {
-        $diems = Diem::join('tuan','diem.tuan_id','=','tuan.id')->join('hoctap','diem.hoctap_id','=','hoctap.id')->join('daoduc_tacphong','diem.daoduc_id','=','daoduc_tacphong.id')->join('vanthemi','diem.vanthemi_id','=','vanthemi.id')->join('hoatdongkhac','diem.hoatdongkhac_id','=','hoatdongkhac.id')->join('lop','diem.lop_id','=','lop.id')->select('tuan.tentuan as tentuan', 'hoctap.diem','diem.id','lop.khoi as lopkhoi','lop.ten as tenlop','hoctap.diem as hoctap','hoctap.solantru as slhoctap','daoduc_tacphong.diem as daoduc','daoduc_tacphong.solantru as sldaoduc','vanthemi.diem as vanthe','vanthemi.solantru as slvanthe','hoatdongkhac.diem as hoatdongkhac','hoatdongkhac.solantru as slhoatdongkhac','hoatdongkhac.diemcong as diemconghoatdong','hoatdongkhac.solancong as solanconghoatdong')->get();
+        $diems = Diem::join('tuan','diem.tuan_id','=','tuan.id')->join('hoctap','diem.hoctap_id','=','hoctap.id')->join('daoduc_tacphong','diem.daoduc_id','=','daoduc_tacphong.id')->join('vanthemi','diem.vanthemi_id','=','vanthemi.id')->join('hoatdongkhac','diem.hoatdongkhac_id','=','hoatdongkhac.id')->join('lop','diem.lop_id','=','lop.id')->select('tuan.tentuan as tentuan', 'hoctap.diem','diem.id','lop.khoi as lopkhoi','lop.ten as tenlop','hoctap.diem as hoctap','hoctap.diemtru as truhoctap','hoctap.solantru as slhoctap','daoduc_tacphong.diem as daoduc','daoduc_tacphong.diemtru as trudaoduc','daoduc_tacphong.solantru as sldaoduc','vanthemi.diem as vanthe','vanthemi.diemtru as truvanthe','vanthemi.solantru as slvanthe','hoatdongkhac.diem as hoatdongkhac','hoatdongkhac.diemtru as truhoatdongkhac','hoatdongkhac.solantru as slhoatdongkhac','hoatdongkhac.diemcong as diemconghoatdong','hoatdongkhac.solancong as solanconghoatdong')->get();
         $viewData = [
            "diems"=>$diems
         ];
@@ -78,28 +78,37 @@ class DiemController extends Controller
     {
         $diem = new Diem();
         if($id) $diem= Diem::find($id);
+
             $hoctapId= new HocTap();
             if($id) $hoctapId= HocTap::find($diem->hoctap_id);
-            $hoctapId->diem = $request->hoctap;
+            $hoctapId->tongdiem = $request->hoctap;
+            $hoctapId->diemtru = $request->truhoctap;
             $hoctapId->solantru = $request->slhoctap;
+            $hoctapId->diem = $hoctapId->tongdiem - $hoctapId->solantru*$hoctapId->diemtru;
             $hoctapId->save();
 
             $vantheId= new VanThe();
             if($id) $vantheId= VanThe::find($diem->vanthemi_id);
-            $vantheId->diem = $request->vanthe;
+            $vantheId->tongdiem = $request->vanthe;
+            $vantheId->diemtru = $request->truvanthe;
             $vantheId->solantru = $request->slvanthe;
+            $vantheId->diem = $vantheId->tongdiem - $vantheId->solantru*$vantheId->diemtru;
             $vantheId->save();
 
             $daoducId= new DaoDuc();
             if($id) $daoducId= DaoDuc::find($diem->daoduc_id);
-            $daoducId->diem = $request->daoduc;
+            $daoducId->tongdiem = $request->daoduc;
+            $daoducId->diemtru = $request->trudaoduc;
             $daoducId->solantru = $request->sldaoduc;
+            $daoducId->diem = $daoducId->tongdiem - $daoducId->solantru*$daoducId->diemtru;
             $daoducId->save();
 
             $hoatdongkhacId= new HoatDongKhac();
             if($id) $hoatdongkhacId= HoatDongKhac::find($diem->hoatdongkhac_id);
-            $hoatdongkhacId->diem = $request->hoatdongkhac;
+            $hoatdongkhacId->tongdiem = $request->hoatdongkhac;
+            $hoatdongkhacId->diemtru = $request->truhoatdongkhac;
             $hoatdongkhacId->solantru = $request->slhoatdongkhac;
+            $hoatdongkhacId->diem = $hoatdongkhacId->tongdiem - $hoatdongkhacId->solantru*$hoatdongkhacId->diemtru;
             $hoatdongkhacId->save();
 
  
@@ -111,6 +120,30 @@ class DiemController extends Controller
         $diem->hoatdongkhac_id = $hoatdongkhacId->id;
         $diem->save();
 
+    }
+    public function destroy($id)
+    {
+        $diem= Diem::find($id);
+            $hoctapId= HocTap::find($diem->hoctap_id);
+            $hoctapId->delete();
+            $hoctapId->save();
+
+            $vantheId= VanThe::find($diem->vanthemi_id);
+            $vantheId->delete();
+            $vantheId->save();
+
+            $daoducId= DaoDuc::find($diem->daoduc_id);
+            $daoducId->delete();
+            $daoducId->save();
+
+            $hoatdongkhacId= HoatDongKhac::find($diem->hoatdongkhac_id);
+            $hoatdongkhacId->delete();
+            $hoatdongkhacId->save();
+
+        $diem->delete();
+        $diem->save();
+
+        return redirect()->back()->with('success','Xóa thành công');
     }
     
 }

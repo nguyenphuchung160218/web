@@ -1,13 +1,21 @@
 @extends('admin::layouts.master')
 
 @section('content')
-    <div class="page-header">
-        <ol class="breadcrumb">
-            <li><a href="#">Trang chủ</a></li>
-            <li><a href="#">Lớp</a></li>
-            <li class="active">Danh sách</li>
-        </ol>
-    </div>
+    <div class="container-fluid">
+
+      <!-- Page Heading -->
+      <div class="row">
+          <div class="col-lg-12">
+              <h1 class="page-header">
+                  Dashboard <small>Statistics Overview</small>
+              </h1>
+              <ol class="breadcrumb">
+                  <li class="active">
+                      <i class="fa fa-dashboard"></i> Dashboard
+                  </li>
+              </ol>
+          </div>
+      </div>
     <div class="table-responsive">
         <h3>Quản lý Lớp <a href="{{ route('admin.get.create.class') }}" ><i class="fa fa-plus-circle"></i></a> </h3>
         <table id="dtBasicExample" class="table table-striped table-sm" cellspacing="0" width="100%">
@@ -52,6 +60,7 @@
             </tbody>
         </table>
     </div>
+  </div>
 @stop
 
 

@@ -47,33 +47,41 @@
                             <td>
                                 <div class="form-group">
                                     <label for=""> Nhập Tổng Điểm:</label>
-                                    <input type="text" class="form-control" placeholder="" value="{{old('hoctap',isset($hoctap->diem) ? $hoctap->diem : '') }}" name="hoctap">
+                                    <input type="number" class="form-control" placeholder="" value="{{old('hoctap',isset($hoctap->tongdiem) ? $hoctap->tongdiem : '') }}" name="hoctap">
+                                    <label for=""> Điểm Trừ / lần:</label>
+                                    <input type="number" class="form-control" placeholder="" value="{{old('truhoctap',isset($hoctap->diemtru) ? $hoctap->diemtru : '') }}" name="truhoctap">
                                     <label for=""> Số Lần Trừ:</label>
-                                    <input type="text" class="form-control" placeholder="" value="{{old('hoctap',isset($hoctap->solantru) ? $hoctap->solantru : '') }}" name="slhoctap">
+                                    <input type="number" class="form-control" placeholder="" value="{{old('hoctap',isset($hoctap->solantru) ? $hoctap->solantru : '') }}" name="slhoctap">
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
                                     <label for=""> Nhập Tổng Điểm:</label>
-                                    <input type="text" class="form-control" placeholder="" value="{{old('vanthe',isset($vanthe->diem) ? $vanthe->diem : '') }}" name="vanthe">
+                                    <input type="number" class="form-control" placeholder="" value="{{old('vanthe',isset($vanthe->tongdiem) ? $vanthe->tongdiem : '') }}" name="vanthe">
+                                    <label for=""> Điểm Trừ / lần:</label>
+                                    <input type="number" class="form-control" placeholder="" value="{{old('truvanthe',isset($vanthe->diemtru) ? $vanthe->diemtru : '') }}" name="truvanthe">
                                     <label for=""> Số Lần Trừ:</label>
-                                    <input type="text" class="form-control" placeholder="" value="{{old('vanthe',isset($vanthe->solantru) ? $vanthe->solantru : '') }}" name="slvanthe">
+                                    <input type="number" class="form-control" placeholder="" value="{{old('vanthe',isset($vanthe->solantru) ? $vanthe->solantru : '') }}" name="slvanthe">
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
                                     <label for=""> Nhập Tổng Điểm:</label>
-                                    <input type="text" class="form-control" placeholder="" value="{{old('daoduc',isset($daoduc->diem) ? $daoduc->diem : '') }}" name="daoduc">
+                                    <input type="number" class="form-control" placeholder="" value="{{old('daoduc',isset($daoduc->tongdiem) ? $daoduc->tongdiem : '') }}" name="daoduc">
+                                    <label for=""> Điểm Trừ / lần:</label>
+                                    <input type="number" class="form-control" placeholder="" value="{{old('trudaoduc',isset($daoduc->diemtru) ? $daoduc->diemtru : '') }}" name="trudaoduc">
                                     <label for=""> Số Lần Trừ:</label>
-                                    <input type="text" class="form-control" placeholder="" value="{{old('daoduc',isset($daoduc->solantru) ? $daoduc->solantru : '') }}" name="sldaoduc">
+                                    <input type="number" class="form-control" placeholder="" value="{{old('daoduc',isset($daoduc->solantru) ? $daoduc->solantru : '') }}" name="sldaoduc">
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
                                     <label for=""> Nhập Tổng Điểm:</label>
-                                    <input type="text" class="form-control" placeholder="" value="{{old('hoatdongkhac',isset($hoatdongkhac->diem) ? $hoatdongkhac->diem : '') }}" name="hoatdongkhac">
+                                    <input type="number" class="form-control" placeholder="" value="{{old('hoatdongkhac',isset($hoatdongkhac->tongdiem) ? $hoatdongkhac->tongdiem : '') }}" name="hoatdongkhac">
+                                    <label for=""> Điểm Trừ / lần:</label>
+                                    <input type="number" class="form-control" placeholder="" value="{{old('truhoatdongkhac',isset($hoatdongkhac->diemtru) ? $hoatdongkhac->diemtru : '') }}" name="truhoatdongkhac">
                                     <label for=""> Số Lần Trừ:</label>
-                                    <input type="text" class="form-control" placeholder="" value="{{old('hoatdongkhac',isset($hoatdongkhac->solantru) ? $hoatdongkhac->solantru : '') }}" name="slhoatdongkhac">
+                                    <input type="number" class="form-control" placeholder="" value="{{old('hoatdongkhac',isset($hoatdongkhac->solantru) ? $hoatdongkhac->solantru : '') }}" name="slhoatdongkhac">
                                 </div>
                             </td>
                         </tr>
