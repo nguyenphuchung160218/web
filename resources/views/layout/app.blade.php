@@ -28,6 +28,7 @@
         <!-- Main Css -->
         <link href="{{ asset('') }}css/style1.css" rel="stylesheet" type="text/css" id="theme-opt" />
         <link href="{{ asset('') }}css/colors/default.css" rel="stylesheet" id="color-opt">
+        <link href="{{ asset('theme_admin/table-js/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     </head>
 
     <body>
@@ -56,7 +57,19 @@
         <script src="https://unicons.iconscout.com/release/v3.0.3/script/monochrome/bundle.js"></script>
         <!-- Main Js -->
         <script src="{{ asset('') }}js/app.js"></script>
+        <script type="text/javascript" src="{{ asset('theme_admin/table-js/js/jquery.dataTables.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('theme_admin/table-js/js/dataTables.bootstrap4.min.js') }}"></script>
+        <!-- <script src="{{ asset('') }}theme_admin/table-js/js/jquery-3.5.1.js"></script> -->
         <!-- Load Facebook SDK for JavaScript -->
         @yield('script')
+        <script>
+          // Basic example
+        $(document).ready(function () {
+          $('#dtBasicExample').DataTable({
+            "pagingType": "simple_numbers" // "simple" option for 'Previous' and 'Next' buttons only
+          });
+          $('.dataTables_length').addClass('bs-select');
+        });
+        </script>
     </body>
 </html>

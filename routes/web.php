@@ -43,3 +43,5 @@ Route::view('/ve-chung-toi', 'info.aboutUs')->name('get.aboutUs');
 Route::group(['prefix'=>'rating'],function (){
     Route::post('/danh-gia/{id}','App\Http\Controllers\RatingController@saveRating')->name('save.form.rating');
 });
+
+Route::get('export', 'App\Http\Controllers\ExportController@export')->name('export');
